@@ -10,12 +10,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 
+final currentIndexProvider = StateProvider((ref) {
+  return 0;
+});
+
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final products = ref.watch(productNotifierProvider);
+    final currentIndex = ref.watch(currentIndexProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kdefaultColor,
@@ -157,6 +162,35 @@ class HomePage extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: kPrimaryColor,
+        unselectedItemColor: kSecondaryColor,
+        currentIndex: currentIndex,
+        onTap: (value) =>
+            ref.read(currentIndexProvider.notifier).update((state) => value),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'HOME',
+            activeIcon: Icon(Icons.home_filled),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_outline),
+            label: 'FAVORITES',
+            activeIcon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.location_on_outlined),
+            label: 'LOCATION',
+            activeIcon: Icon(Icons.location_on),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: 'PROFILE',
+            activeIcon: Icon(Icons.person),
+          ),
+        ],
       ),
     );
   }

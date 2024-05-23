@@ -58,18 +58,18 @@ class ProductCardWidget extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Product Name',
+                      product[productIndex].title,
                       style: AppTheme.kCardTitle,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      'Short Description',
+                      product[productIndex].shortDescription,
                       style: AppTheme.kBodyText,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('\$854'),
+                        Text('\$${product[productIndex].price}'),
                         IconButton(
                           onPressed: () {},
                           icon: Icon(
