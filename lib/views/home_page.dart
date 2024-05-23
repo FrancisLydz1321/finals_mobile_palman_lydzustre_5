@@ -1,18 +1,21 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
+import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/ads_banner_widget.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/card_widget.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/chip_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final products = ref.watch(productNotifierProvider);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kdefaultColor,
@@ -99,10 +102,11 @@ class HomePage extends StatelessWidget {
                 height: 300,
                 child: ListView.builder(
                   padding: EdgeInsets.all(4),
-                  itemCount: 3,
+                  itemCount: products.length,
                   // scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
-                  itemBuilder: (context, index) => const ProductCardWidget(),
+                  itemBuilder: (context, index) =>
+                      ProductCardWidget(productIndex: index),
                 ),
                 // child: const ProductCardWidget(),
               ),
@@ -136,17 +140,17 @@ class HomePage extends StatelessWidget {
               ),
 
               Container(
-                
                 padding: EdgeInsets.all(4),
                 width: double.infinity,
                 height: 300,
                 child: ListView.builder(
                   padding: EdgeInsets.all(4),
-                  // itemCount: 3,
+                  itemCount: products.length,
                   // scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
-                  itemBuilder: (context, index) => const SizedBox(
-                      height: 250, child: const ProductCardWidget()),
+                  itemBuilder: (context, index) => SizedBox(
+                      height: 250,
+                      child: ProductCardWidget(productIndex: index)),
                 ),
                 // child: const ProductCardWidget(),
               ),

@@ -6,11 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class ProductCardWidget extends ConsumerWidget {
   const ProductCardWidget({
     super.key,
+    required this.productIndex,
   });
 
+  final int productIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final product = ref.watch(productNotifierProvider);
+    final product = ref.watch(productNotifierProvider);
     return Container(
       padding: EdgeInsets.all(4),
       // color: Colors.amber,
@@ -44,7 +46,7 @@ class ProductCardWidget extends ConsumerWidget {
                   width: double.infinity,
                   margin: const EdgeInsets.all(12),
                   color: kLightBackground,
-                  child: Image.asset('assets/products/airpods.jpg'),
+                  child: Image.asset(product[productIndex].imgUrl),
                 ),
               ),
               const SizedBox(
