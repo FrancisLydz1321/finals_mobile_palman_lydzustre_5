@@ -5,6 +5,7 @@ import 'package:finals_mobile_palman_lydzustre_5/widgets/chip_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatelessWidget {
@@ -98,7 +99,7 @@ class HomePage extends StatelessWidget {
                 height: 300,
                 child: ListView.builder(
                   padding: EdgeInsets.all(4),
-                  // itemCount: 3,
+                  itemCount: 3,
                   // scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
                   itemBuilder: (context, index) => const ProductCardWidget(),
@@ -118,6 +119,36 @@ class HomePage extends StatelessWidget {
                     style: AppTheme.kSeeAllText,
                   ),
                 ],
+              ),
+
+              // MasonryGridView.builder(
+              //   gridDelegate: SliverSimpleGridDelegateWithFixedCrossAxisCount(
+              //     crossAxisCount: 1,
+              //   ),
+              //   itemBuilder: (context, index) => const SizedBox(
+              //     height: 250,
+              //     child: ProductCardWidget(),
+              //   ),
+              // ),
+
+              const SizedBox(
+                height: 12,
+              ),
+
+              Container(
+                
+                padding: EdgeInsets.all(4),
+                width: double.infinity,
+                height: 300,
+                child: ListView.builder(
+                  padding: EdgeInsets.all(4),
+                  // itemCount: 3,
+                  // scrollDirection: Axis.horizontal,
+                  // shrinkWrap: true,
+                  itemBuilder: (context, index) => const SizedBox(
+                      height: 250, child: const ProductCardWidget()),
+                ),
+                // child: const ProductCardWidget(),
               ),
             ],
           ),

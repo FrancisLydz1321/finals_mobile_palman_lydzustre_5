@@ -1,13 +1,16 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
+import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductCardWidget extends StatelessWidget {
+class ProductCardWidget extends ConsumerWidget {
   const ProductCardWidget({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final product = ref.watch(productNotifierProvider);
     return Container(
       padding: EdgeInsets.all(4),
       // color: Colors.amber,
@@ -15,7 +18,7 @@ class ProductCardWidget extends StatelessWidget {
       width: double.infinity,
       child: ListView.builder(
         padding: const EdgeInsets.all(8),
-        itemCount: 3,
+        itemCount: 2,
         scrollDirection: Axis.horizontal,
         // shrinkWrap: true,
         itemBuilder: (context, index) => Container(
