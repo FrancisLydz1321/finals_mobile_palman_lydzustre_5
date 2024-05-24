@@ -1,5 +1,6 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
 import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
+import 'package:finals_mobile_palman_lydzustre_5/views/detail_page.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/ads_banner_widget.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/card_widget.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/chip_widget.dart';
@@ -147,15 +148,23 @@ class HomePage extends ConsumerWidget {
               Container(
                 padding: EdgeInsets.all(4),
                 width: double.infinity,
-                height: 300,
+                height: 280,
                 child: ListView.builder(
                   padding: EdgeInsets.all(4),
                   itemCount: products.length,
                   // scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
-                  itemBuilder: (context, index) => SizedBox(
-                      height: 250,
-                      child: ProductCardWidget(productIndex: index)),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(),
+                      ),
+                    ),
+                    child: SizedBox(
+                        height: 250,
+                        child: ProductCardWidget(productIndex: index)),
+                  ),
                 ),
                 // child: const ProductCardWidget(),
               ),
