@@ -34,31 +34,42 @@ class CardPage extends ConsumerWidget {
           Expanded(
             flex: 3,
             child: Container(
-              // height: 300,
+              padding: const EdgeInsets.all(20),
+              //height: 300,
               // width: double.infinity,
-              // color: Colors.pink,
-              child: ListView.builder(
-                itemCount: itemBag.length,
-                itemBuilder: (context, index) => Container(
-                  color: Colors.black,
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Image.asset(itemBag[index].imgUrl),
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Text(itemBag[index].title),
-                            Text(itemBag[index].shortDescription),
-                            Row(
-                              children: [Text('\$${itemBag[index].price}')],
-                            )
-                          ],
+              //color: Colors.indigo,
+              child: Expanded(
+                // ATAY NAA DIRI ANG SOLUSYON SA ERROR PISTENG YAWA
+                child: ListView.builder(
+                  itemCount: itemBag.length,
+                  itemBuilder: (context, index) => Container(
+                    color: Colors.white,
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Image.asset(itemBag[index].imgUrl),
+                          // child: Text('adasdasd'),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            children: [
+                              Text(itemBag[index].title),
+                              Text(itemBag[index].shortDescription),
+                              Row(
+                                children: [
+                                  Text(
+                                    '\$${itemBag[index].price}',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -71,14 +82,8 @@ class CardPage extends ConsumerWidget {
               color: Colors.red,
             ),
           ),
-          Expanded(
-            child: Container(
-              color: Colors.indigo,
-            ),
-          ),
         ],
       ),
-      // ),
     );
   }
 }
