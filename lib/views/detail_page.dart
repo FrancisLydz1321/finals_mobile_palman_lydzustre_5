@@ -6,9 +6,9 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DetailPage extends ConsumerWidget {
-  DetailPage({super.key});
+  DetailPage({super.key, required this.getIndex});
 
-  int getIndex = 0;
+  int getIndex;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -95,14 +95,18 @@ class DetailPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '\$${product[getIndex].price}',
+                        '\$${product[getIndex].price * product[getIndex].qty} ',
                         style: AppTheme.kHeadingOne,
                       ),
                       Container(
                         child: Row(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                ref
+                                    .read(productNotifierProvider.notifier)
+                                    .decreaseQty(product[getIndex].pid);
+                              },
                               icon: Icon(
                                 Icons.do_not_disturb_on_outlined,
                                 size: 30,
@@ -113,7 +117,11 @@ class DetailPage extends ConsumerWidget {
                               style: AppTheme.kCardTitle,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                ref
+                                    .read(productNotifierProvider.notifier)
+                                    .incrementQty(product[getIndex].pid);
+                              },
                               icon: Icon(
                                 Icons.add_circle_outline,
                                 size: 30,

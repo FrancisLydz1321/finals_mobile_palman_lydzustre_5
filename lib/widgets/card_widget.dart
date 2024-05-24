@@ -1,5 +1,7 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
+import 'package:finals_mobile_palman_lydzustre_5/controllers/itembag_controller.dart';
 import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
+import 'package:finals_mobile_palman_lydzustre_5/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,11 +71,47 @@ class ProductCardWidget extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('\$${product[productIndex].price}'),
+                        Text(
+                          '\$${product[productIndex].price}',
+                          style: AppTheme.kCardTitle,
+                        ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ref
+                                .read(productNotifierProvider.notifier)
+                                .isSelected(
+                                    product[productIndex].pid, productIndex);
+
+                            if (product[productIndex].isSelected == false) {
+                              ref.watch(itemBagProvider.notifier).addNewItemBag(
+                                    ProductModel(
+                                        pid: product[productIndex].pid,
+                                        imgUrl: product[productIndex].imgUrl,
+                                        title: product[productIndex].title,
+                                        price: product[productIndex].price,
+                                        shortDescription: product[productIndex]
+                                            .shortDescription,
+                                        longDescription: product[productIndex]
+                                            .longDescription,
+                                        reviews: product[productIndex].reviews,
+                                        rating: product[productIndex].rating),
+                                  );
+                            } else {
+                              ref
+                                  .read(
+                                    itemBagProvider.notifier,
+                                  )
+                                  .removeItem(
+                                    product[productIndex].pid,
+                                  );
+                            }
+                            // print(product[productIndex].isSelected);
+                          },
                           icon: Icon(
-                            Icons.add_circle,
+                            // Icons.add_circle,
+                            product[productIndex].isSelected
+                                ? Icons.check_circle
+                                : Icons.add_circle,
                             size: 30,
                           ),
                         ),
