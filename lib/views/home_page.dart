@@ -1,6 +1,7 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
 import 'package:finals_mobile_palman_lydzustre_5/controllers/itembag_controller.dart';
 import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
+import 'package:finals_mobile_palman_lydzustre_5/views/cart_page.dart';
 import 'package:finals_mobile_palman_lydzustre_5/views/detail_page.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/ads_banner_widget.dart';
 import 'package:finals_mobile_palman_lydzustre_5/widgets/card_widget.dart';
@@ -44,7 +45,14 @@ class HomePage extends ConsumerWidget {
             child: Badge(
               label: Text(itemBag.length.toString()),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CardPage(),
+                      ),
+                    );
+                  },
                   icon: Icon(
                     Icons.local_mall_outlined,
                     size: 24,

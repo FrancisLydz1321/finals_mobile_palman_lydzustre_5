@@ -1,5 +1,6 @@
 import 'package:finals_mobile_palman_lydzustre_5/constants/themes.dart';
 import 'package:finals_mobile_palman_lydzustre_5/controllers/product_controller.dart';
+import 'package:finals_mobile_palman_lydzustre_5/views/cart_page.dart';
 import 'package:finals_mobile_palman_lydzustre_5/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -31,7 +32,15 @@ class DetailPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
-                onPressed: () {}, icon: Icon(Icons.local_mall_outlined)),
+                onPressed: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const CardPage(),
+                  //   ),
+                  // );
+                },
+                icon: Icon(Icons.local_mall_outlined)),
           )
         ],
       ),

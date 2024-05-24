@@ -32,7 +32,7 @@ class CardPage extends ConsumerWidget {
       body: Column(
         children: [
           Expanded(
-            flex: 3,
+            flex: 1,
             child: Container(
               padding: const EdgeInsets.all(20),
               //height: 300,
@@ -42,33 +42,54 @@ class CardPage extends ConsumerWidget {
                 // ATAY NAA DIRI ANG SOLUSYON SA ERROR PISTENG YAWA
                 child: ListView.builder(
                   itemCount: itemBag.length,
-                  itemBuilder: (context, index) => Container(
-                    color: Colors.white,
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Image.asset(itemBag[index].imgUrl),
-                          // child: Text('adasdasd'),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            children: [
-                              Text(itemBag[index].title),
-                              Text(itemBag[index].shortDescription),
-                              Row(
+                  itemBuilder: (context, index) => Card(
+                    child: Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Image.asset(itemBag[index].imgUrl),
+                            // child: Text('adasdasd'),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    '\$${itemBag[index].price}',
+                                    itemBag[index].title,
+                                    style: AppTheme.kCardTitle,
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Text(
+                                    itemBag[index].shortDescription,
+                                    style: AppTheme.kBodyText,
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '\$${itemBag[index].price}',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -77,9 +98,126 @@ class CardPage extends ConsumerWidget {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 1,
             child: Container(
-              color: Colors.red,
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Have a coupon code? enter here'),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: const [
+                  //     Text(
+                  //       'Subtotal: ',
+                  //       style: TextStyle(
+                  //           fontSize: 18, fontWeight: FontWeight.bold),
+                  //     ),
+                  //     Text(
+                  //       '\$${ref.watch(priceCalcProvider)}',
+                  //       style: const TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //           color: kPrimaryColor),
+                  //     ),
+                  //   ],
+                  // ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    height: 60,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        width: 1,
+                        color: kPrimaryColor,
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'FDS2023',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          child: Row(
+                            children: const [
+                              Text(
+                                'Available',
+                                style: TextStyle(
+                                    color: kPrimaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Icon(Icons.check_circle)
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Delivery Fee:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        'Free',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Discount:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        '\$0%',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  const Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Total:',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: kPrimaryColor),
+                      ),
+                      Text(
+                        '\$${ref.watch(priceCalcProvider)}',
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: kPrimaryColor),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

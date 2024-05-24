@@ -8,9 +8,9 @@ void main() {
   runApp(ProviderScope(
     child: const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CardPage(),
+      // home: CardPage(),
       // home: DetailPage(),
-      // home: HomePage(),
+      home: HomePage(),
     ),
   ));
 }
