@@ -51,8 +51,8 @@ class DetailPage extends ConsumerWidget {
             Container(
               height: 300,
               width: double.infinity,
-              color: Colors.pink,
-              // child: Image.asset(product[getIndex].imgUrl),
+              // color: Colors.pink,
+              child: Image.asset(product[getIndex].imgUrl),
             ),
             Container(
               padding: EdgeInsets.all(30),

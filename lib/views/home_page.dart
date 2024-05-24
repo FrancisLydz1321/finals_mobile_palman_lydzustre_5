@@ -36,7 +36,8 @@ class HomePage extends ConsumerWidget {
         // ),
         title: Center(
           child: Text(
-            'THIS IS A TITLE',
+            'E-COMMERCE',
+            style: AppTheme.kBigTitle,
           ),
         ),
         actions: [
@@ -90,10 +91,10 @@ class HomePage extends ConsumerWidget {
                       chipLabel: 'Accessories',
                     ),
                     ChipWidget(
-                      chipLabel: 'asdasdasdasd',
+                      chipLabel: 'Databases',
                     ),
                     ChipWidget(
-                      chipLabel: 'qweqweqwe',
+                      chipLabel: 'Servers',
                     ),
                   ],
                 ),
@@ -129,8 +130,17 @@ class HomePage extends ConsumerWidget {
                   itemCount: products.length,
                   // scrollDirection: Axis.horizontal,
                   // shrinkWrap: true,
-                  itemBuilder: (context, index) =>
-                      ProductCardWidget(productIndex: index),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(getIndex: index),
+                      ),
+                    ),
+                    child: ProductCardWidget(
+                      productIndex: index,
+                    ),
+                  ),
                 ),
                 // child: const ProductCardWidget(),
               ),
